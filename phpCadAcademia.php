@@ -4,7 +4,12 @@
 	$user = "u713684323_htt";
 	$senha = "Htt@1234";
 
+
+
+
 	//Comentario
+
+	//Outro Teste
 
 	$connect = mysqli_connect($host,$user,$senha,$bd);
 	if (mysqli_connect_errno())
