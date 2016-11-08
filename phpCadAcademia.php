@@ -3,8 +3,13 @@
 	$bd = "u713684323_htt";
 	$user = "u713684323_htt";
 	$senha = "Htt@1234";
+
 	
 	// lucas boiola
+
+
+	//Comentario
+
 	$connect = mysqli_connect($host,$user,$senha,$bd);
 	if (mysqli_connect_errno())
 	{
@@ -27,19 +32,19 @@
 				 $ids[] = $connect->insert_id;
 				 $connect->next_result();
 			 } while($connect->more_results());
-			$cd_busca = $ids[2]; // Pega o id do endereço inserido
+			$cd_busca = $ids[2]; // Pega o id do endereï¿½o inserido
 		}
 		else if(strcmp($operacao,"alterar") == 0)
 			$cd_busca = $academia->cd_endereco_busca;
 		$return = array();
-		if (!$result) 
+		if (!$result)
 		{
-			 echo 'Error01'; // Não inseriu todos os registros
+			 echo 'Error01'; // Nï¿½o inseriu todos os registros
 			 mysqli_close($connect);
-		} 
+		}
 		else // Inseriu todos os registro?
 		{
-			if(!is_resource($connect )) // Não está conectado?
+			if(!is_resource($connect )) // Nï¿½o estï¿½ conectado?
 				$connect = mysqli_connect($host,$user,$senha,$bd);
 			if (mysqli_connect_errno())
 			{
@@ -47,25 +52,25 @@
 			}
 			$query = "SELECT a.cd_academia, a.cd_registro, " .
 					" r.ind_registro, r.ds_nome, " .
-					" e.cd_endereco, e.nr_cep, e.ds_endereco, e.ds_bairro, e.cd_cidade" . 
+					" e.cd_endereco, e.nr_cep, e.ds_endereco, e.ds_bairro, e.cd_cidade" .
 					" FROM tb_academia a" .
 					" INNER JOIN tb_registro r ON r.cd_registro = a.cd_registro" .
 					" INNER JOIN tb_endereco e ON e.cd_endereco = r.cd_endereco" .
 					" WHERE r.cd_endereco = " . $cd_busca; // Cd da primeira tabela inserida no script anterior
 			$result = mysqli_query($connect,$query);
 			$return = array();
-			
-			if (!$result) 
+
+			if (!$result)
 			{
-				 echo 'Erro: 02'; // Não localizou os registros
+				 echo 'Erro: 02'; // Nï¿½o localizou os registros
 				 mysqli_close($connect);
-			} 
+			}
 			else // Inseriu todos os registro?
 			{
-				if (mysqli_num_rows($result) > 0) 
+				if (mysqli_num_rows($result) > 0)
 				{
 					while ($row = $result->fetch_assoc())
-					{		
+					{
 						// Academia
 						$row_array["cd_academia"] = $row["cd_academia"];
 						$row_array["cd_registro"] = $row["cd_registro"];
@@ -78,12 +83,12 @@
 						$row_array["ds_endereco"] = $row["ds_endereco"];
 						$row_array["ds_bairro"] = $row["ds_bairro"];
 						$row_array["cd_cidade"] = $row["cd_cidade"];
-						
+
 						array_push($return,$row_array);
 					}
 				}
 			}
-			
+
 			echo(json_encode($return));
 			mysqli_close($connect);
 		}
@@ -96,36 +101,36 @@
 
 		$result = mysqli_query($connect,$query);
 		$return = array();
-		if (!$result) 
+		if (!$result)
 		{
 			 echo 'Error01';
 			 mysqli_close($connect);
-		} 
-		else 
+		}
+		else
 		{
-			echo $connect->insert_id; // Função que vai devolver o último ID inserido
+			echo $connect->insert_id; // Funï¿½ï¿½o que vai devolver o ï¿½ltimo ID inserido
 			$ultimo_cd_inserido = $connect->insert_id;
-			$query = "SELECT * FROM tb_endereco WHERE cd_academia = " . $ultimo_cd_inserido; // Pega o ultimo academia da tabela, que é o mais atual
+			$query = "SELECT * FROM tb_endereco WHERE cd_academia = " . $ultimo_cd_inserido; // Pega o ultimo academia da tabela, que ï¿½ o mais atual
 			$result = mysqli_query($connect,$query);
 			$return = array();
 
-			if (mysqli_num_rows($result) > 0) 
+			if (mysqli_num_rows($result) > 0)
 			{
 				while ($row = $result->fetch_assoc())
-				{		
+				{
 					$row_array["cd_academia"] = $row["cd_academia"];
 					$row_array["cd_registro"] = $row["cd_registro"];
-					
+
 					array_push($return,$row_array);
 
 				}
 			}
 		}
-		
+
 		echo(json_encode($return));
 		mysqli_close($connect);
 	}
-	
+
 	else if(strcmp('CONSULTAR-json', $_POST['method']) == 0)
 	{
 		$academia = utf8_encode($_POST['json']);
@@ -135,7 +140,7 @@
 		$result = mysqli_query($connect,$query);
 		$return = array();
 
-		if (mysqli_num_rows($result) > 0) 
+		if (mysqli_num_rows($result) > 0)
 		{
 			while ($row = $result->fetch_assoc())
 			{
