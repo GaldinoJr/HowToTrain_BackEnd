@@ -1,0 +1,10 @@
+{
+  "name":"HowToTrain_BackEnd",
+  "description":"Rests do aplicativo",
+  "require":{
+    "php":">= 5.2.8",
+    "slim/slim": "^3.0",
+    "slim/php-view": "^2.0",
+    "monolog/monolog": "^1.7"
+  }
+}
