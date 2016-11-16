@@ -5,11 +5,18 @@
       "logger"=>[
         "name" =>"HowToTrain_BackEnd",
         "level" => Monolog\Logger::DEBUG,
-        "path" => "logs/"
-      ],
-    "database"=>[
+        "path" => "logs/",
 
-     ]
+      ],
+      "databaseLocal"=>[
+        "host" => "localhost",
+        "username" => "root",
+        "password" => "nkr5vdyi",
+        "database" => "HowToTrain"
+
+      ],
+      "foundHandler" => new Slim\Handlers\Strategies\RequestResponseArgs
+
     ]
   ];
  ?>
