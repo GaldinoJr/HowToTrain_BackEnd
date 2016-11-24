@@ -1,0 +1,22 @@
+<?php
+
+  namespace HowToTrain\Rotas
+
+  class TipoTreino{
+    protected $ci;
+
+    public function __construct($ci)
+    {
+      $this->ci = $ci;
+    }
+
+    public function listarTiposTreino($request,$response){
+
+      $dadosDB = $this->ci->get("settings")->get("databaseLocal");
+      
+      $sql = new MySQLi
+
+    }
+  }
+
+?>
