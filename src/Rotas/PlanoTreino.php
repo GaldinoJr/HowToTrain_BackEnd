@@ -20,7 +20,7 @@
       {
         $dadosDB = $this->ci->get("settings")->get("databaseLocal");
 
-         $sql = new \MySQLi($dadosDB["host"],$dadosDB["username"],$dadosDB["password"]);
+         $sql = new MySQLi($dadosDB["host"],$dadosDB["username"],$dadosDB["password"]);
 
         if(mysqli_connect_errno()){
           $resData = array();
@@ -49,7 +49,9 @@
 
           $json = array("codigoCriado"=> $sql->insert_id);
 
-          $res = $response->withJson($json,200);
+
+
+          $res = $response->withJson(array_merge($json,$novoPlanoTreino),200);
 
         }else{
           $resData = array();
