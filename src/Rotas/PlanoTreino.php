@@ -20,7 +20,7 @@
       {
         $dadosDB = $this->ci->get("settings")->get("databaseLocal");
 
-         $sql = new MySQLi($dadosDB["host"],$dadosDB["username"],$dadosDB["password"]);
+         $sql = new \MySQLi($dadosDB["host"],$dadosDB["username"],$dadosDB["password"]);
 
         if(mysqli_connect_errno()){
           $resData = array();
