@@ -11,9 +11,13 @@
       $this->ci = $ci;
     }
 
+    public function buscarPlanoTreino($request,$response,$idPlanoTreino){
+      
+    }
+
     public function cadastrarPlanoTreino($request,$response)
     {
-      $novoPlanoTreino = json_decode($request->getBody());
+      $novoPlanoTreino = json_decode($request->getBody(),true);
       $sql = null;
       $res;
       try
@@ -36,10 +40,10 @@
         $stm = $sql->prepare($query);
 
         $valoresQuery = array("siii");
-        $valoresQuery[] = &$novoPlanoTreino->nomePlanoTreino;
-        $valoresQuery[] = &$novoPlanoTreino->tipoTreino;
-        $valoresQuery[] = &$novoPlanoTreino->periodoValidade;
-        $valoresQuery[] = &$novoPlanoTreino->codigoProfessor;
+        $valoresQuery[] = &$novoPlanoTreino['nomePlanoTreino'];
+        $valoresQuery[] = &$novoPlanoTreino['tipoTreino'];
+        $valoresQuery[] = &$novoPlanoTreino['periodoValidade'];
+        $valoresQuery[] = &$novoPlanoTreino['codigoProfessor'];
 
         call_user_func_array(array($stm,"bind_param"),$valoresQuery);
 
@@ -47,7 +51,7 @@
 
         if($success){
 
-          $json = array("codigoCriado"=> $sql->insert_id);
+          $json = array("codigoPlanoTreino"=> $sql->insert_id);
 
 
 
