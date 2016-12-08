@@ -12,7 +12,32 @@
     }
 
     public function buscarPlanoTreino($request,$response,$idPlanoTreino){
-      
+
+      $query = "select pl.*, tt.ds_tipo_treino
+                from tb_plano_treino pl
+                inner join tb_tipo_treino tt on pl.ind_tipo_treino = tt.cd_tipo_treino ";
+
+      if(isset($idPlanoTreino)){
+        $query .= "where pl.cd_plano_treino = ${idPlanoTreino}";
+      }
+
+      $dadosDB = $this->ci->get("settings")->get("databaseLocal");
+      $sql = null;
+      try {
+          $sql = new \MySQLi($dadosDB["host"],$dadosDB["username"],$dadosDB["password"]);
+
+          
+      } catch (Exception $e) {
+
+      }finally{
+
+      }
+
+
+
+
+
+
     }
 
     public function cadastrarPlanoTreino($request,$response)
