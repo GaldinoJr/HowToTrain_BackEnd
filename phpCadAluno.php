@@ -27,19 +27,19 @@
 				 $ids[] = $connect->insert_id;
 				 $connect->next_result();
 			 } while($connect->more_results());
-			$cd_busca = $ids[2]; // Pega o id do endereço inserido
+			$cd_busca = $ids[2]; // Pega o id do endereÃ§o inserido
 		}
 		else if(strcmp($operacao,"alterar") == 0)
 			$cd_busca = $aluno->cd_endereco_busca;
 		$return = array();
 		if (!$result) 
 		{
-			 echo 'Error01'; // Não inseriu todos os registros
+			 echo 'Error01'; // NÃ£o inseriu todos os registros
 			 mysqli_close($connect);
 		} 
 		else // Inseriu todos os registro?
 		{
-			if(!is_resource($connect )) // Não está conectado?
+			if(!is_resource($connect )) // NÃ£o estÃ¡ conectado?
 				$connect = mysqli_connect($host,$user,$senha,$bd);
 			if (mysqli_connect_errno())
 			{
@@ -59,7 +59,7 @@
 			
 			if (!$result) 
 			{
-				 echo 'Erro: 02'; // Não localizou os registros
+				 echo 'Erro: 02'; // NÃ£o localizou os registros
 				 mysqli_close($connect);
 			} 
 			else // Inseriu todos os registro?
@@ -116,9 +116,9 @@
 		} 
 		else 
 		{
-			echo $connect->insert_id; // Função que vai devolver o último ID inserido
+			echo $connect->insert_id; // FunÃ§Ã£o que vai devolver o Ãºltimo ID inserido
 			$ultimo_cd_inserido = $connect->insert_id;
-			$query = "SELECT * FROM tb_endereco WHERE cd_aluno = " . $ultimo_cd_inserido; // Pega o ultimo aluno da tabela, que é o mais atual
+			$query = "SELECT * FROM tb_endereco WHERE cd_aluno = " . $ultimo_cd_inserido; // Pega o ultimo aluno da tabela, que Ã© o mais atual
 			$result = mysqli_query($connect,$query);
 			$return = array();
 
@@ -128,12 +128,26 @@
 				{		
 					$row_array["cd_aluno"] = $row["cd_aluno"];
 					$row_array["nr_peso"] = $row["nr_peso"];
-					$row_array["ind_codicao_fisica"] = $row["ind_codicao_fisica"];
+					$row_array["ind_condicao_fisica"] = $row["ind_condicao_fisica"];
 					$row_array["ind_tipo_treino"] = $row["ind_tipo_treino"];
 					$row_array["ind_nivel_experiencia"] = $row["ind_nivel_experiencia"];
 					$row_array["cd_pessoa"] = $row["cd_pessoa"];
 					$row_array["cd_academia"] = $row["cd_academia"];
 					$row_array["cd_professor"] = $row["cd_professor"];
+					// Pessoa
+					$row_array["dt_nascimento"] = $row["dt_nascimento"];
+					$row_array["ind_sexo"] = $row["ind_sexo"];
+					$row_array["fg_professor"] = $row["fg_professor"];
+					$row_array["cd_registro"] = $row["cd_registro"];
+					// Registro
+					$row_array["ind_registro"] = $row["ind_registro"];
+					$row_array["ds_nome"] = $row["ds_nome"];
+					// Endereco
+					$row_array["cd_endereco"] = $row["cd_endereco"];
+					$row_array["nr_cep"] = $row["nr_cep"];
+					$row_array["ds_endereco"] = $row["ds_endereco"];
+					$row_array["ds_bairro"] = $row["ds_bairro"];
+					$row_array["cd_cidade"] = $row["cd_cidade"];
 					
 					array_push($return,$row_array);
 
@@ -160,12 +174,26 @@
 			{
 				$row_array["cd_aluno"] = $row["cd_aluno"];
 				$row_array["nr_peso"] = $row["nr_peso"];
-				$row_array["ind_codicao_fisica"] = $row["ind_codicao_fisica"];
+				$row_array["ind_condicao_fisica"] = $row["ind_condicao_fisica"];
 				$row_array["ind_tipo_treino"] = $row["ind_tipo_treino"];
 				$row_array["ind_nivel_experiencia"] = $row["ind_nivel_experiencia"];
 				$row_array["cd_pessoa"] = $row["cd_pessoa"];
 				$row_array["cd_academia"] = $row["cd_academia"];
 				$row_array["cd_professor"] = $row["cd_professor"];
+				// Pessoa
+				$row_array["dt_nascimento"] = $row["dt_nascimento"];
+				$row_array["ind_sexo"] = $row["ind_sexo"];
+				$row_array["fg_professor"] = $row["fg_professor"];
+				$row_array["cd_registro"] = $row["cd_registro"];
+				// Registro
+				$row_array["ind_registro"] = $row["ind_registro"];
+				$row_array["ds_nome"] = $row["ds_nome"];
+				// Endereco
+				$row_array["cd_endereco"] = $row["cd_endereco"];
+				$row_array["nr_cep"] = $row["nr_cep"];
+				$row_array["ds_endereco"] = $row["ds_endereco"];
+				$row_array["ds_bairro"] = $row["ds_bairro"];
+				$row_array["cd_cidade"] = $row["cd_cidade"];
 
 				array_push($return,$row_array);
 			}
