@@ -5,12 +5,6 @@
 	$senha = "Htt@1234";
 
 
-//commit
-
-	//Comentario
-
-	//Outro Teste
-
 	$connect = mysqli_connect($host,$user,$senha,$bd);
 	if (mysqli_connect_errno())
 	{
